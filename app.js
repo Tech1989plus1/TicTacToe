@@ -69,17 +69,48 @@ var point = (id) => {
 }
 
 var check = (id, value) => {
-  rowCheck(id, value);
-}
-
-var rowCheck = (id, value) => {
-
-}
-
-var colCheck = () => {
+  var loc = point(id);
   
+  if(!rowCheck(loc, value)||!colCheck(loc, value) ||!diagonalCheck(value)){
+    return false;
+  }
+  return true;
 }
 
-var diagonalCheck = () => {
+var rowCheck = (loc, value) => {
+  var r = loc.row;
+
+  if(board[r][0] === value && board[r][1] === value && board[r][2] === value){
+    return true;
+  }
+  return false;
+}
+
+var colCheck = (loc, value) => {
+  var c = loc.col;
+
+  if(board[0][c] === value && board[1][c] === value && board[2][c] === value){
+    return true;
+  }
+  return false;
+}
+
+var diagonalCheck = (value) => {  
+  for(var i = 0; i < size; i++){
+    if(board[i][i] !== value){
+      return false;
+    }
+  }
+
+  var i = 2;
+  var j = 0;
+  while(j < size){
+    if(board[i][j] !== value){
+      return false;
+    }
+    i--; 
+    j++;
+  }
   
+  return true;
 }
