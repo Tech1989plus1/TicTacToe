@@ -31,5 +31,10 @@ var eleValue = (id) => {
 }
 
 var resetAll = () => {
-  console.log("hi in resetall")
+  var ids = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8'];
+
+  ids.map((id, key) => {
+    var element = document.getElementById(id);
+    element.value = ' ';
+  })
 }
