@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="description" content="Webpage description goes here" />
+    <meta charset="utf-8">
+    <title>Tic Tac Toe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <link rel="stylesheet">
+  </head>
+  <body>
+    <div class="app"></div>
+    <h1>Tic Tac Toe</h1>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><input type='button' id='c0' value=' ' onClick='eleValue(`c0`)'/></td>
+          <td><input type='button' id='c1' value=' ' onClick='eleValue(`c1`)'/></td>
+          <td><input type='button' id='c2' value=' ' onClick='eleValue(`c2`)'/></td>
+        </tr>
+         <tr> 
+          <td><input type='button' id='c3' value=' ' onClick='eleValue(`c3`)'/></td>
+          <td><input type='button' id='c4' value=' ' onClick='eleValue(`c4`)'/></td>
+          <td><input type='button' id='c5' value=' ' onClick='eleValue(`c5`)'/></td>   
+        </tr>
+         <tr>
+          <td><input type='button' id='c6' value=' ' onClick='eleValue(`c6`)'/></td>
+          <td><input type='button' id='c7' value=' ' onClick='eleValue(`c7`)'/></td>
+          <td><input type='button' id='c8' value=' ' onClick='eleValue(`c8`)'/></td>
+        </tr>
+      </tbody>
+    </table>
+    <input type='button' id='reset' value='Reset' onClick='resetAll()'/>
+    <script src="app.js"></script>
+  </body>
+</html>
