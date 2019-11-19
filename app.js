@@ -4,7 +4,9 @@ var board = [];
 var count = 0;
 var toggle = 0;
 
-window.onload = () => {
+window.onload = () => {initialized();}
+
+var initialized = () => {
   for(var i = 0; i < size; i++){
     var row = [];
     for(var j= 0; j < size; j++){
@@ -34,12 +36,16 @@ var eleValue = (id) => {
   else{
     increasCount();
     if(toggle === 0){
-      check(id, 'X');
-      element.value = 'X';
+      if(updateBoard(id, 'X')){
+        alert(`X`);
+      }
       toggle = 1;
-    } else{
-      element.value = 'O';
-      check(id, 'O');
+    } 
+    
+    else{
+      if(updateBoard(id, 'O')){
+        alert(`O`);
+      }
       toggle = 0;
     }
   }
@@ -47,11 +53,22 @@ var eleValue = (id) => {
 
 var resetAll = () => {
   count = 0;
-
+  board = [];
+  initialized();
   ids.map((id, key) => {
     var element = document.getElementById(id);
     element.value = ' ';
   })
+}
+
+var updateBoard = (id, value) => {
+  let element = document.getElementById(id);
+  element.value = value;
+
+  let {row, col} = point(id);
+  board[row][col] = value;
+  var passed = check({row, col}, value);
+  return passed;
 }
 
 var point = (id) => {
@@ -68,13 +85,11 @@ var point = (id) => {
   }
 }
 
-var check = (id, value) => {
-  var loc = point(id);
-  
-  if(!rowCheck(loc, value)||!colCheck(loc, value) ||!diagonalCheck(value)){
-    return false;
+var check = (loc, value) => {
+  if(rowCheck(loc, value)||colCheck(loc, value) ||diagonalCheck(value)){
+    return true;
   }
-  return true;
+  return false;
 }
 
 var rowCheck = (loc, value) => {
@@ -96,21 +111,15 @@ var colCheck = (loc, value) => {
 }
 
 var diagonalCheck = (value) => {  
+  var arr = [];
+
   for(var i = 0; i < size; i++){
-    if(board[i][i] !== value){
-      return false;
+    if(board[i][i] === value || board[2-i][i] === value){
+      arr.push(true);
+    } else{
+      arr.push(false);
     }
   }
 
-  var i = 2;
-  var j = 0;
-  while(j < size){
-    if(board[i][j] !== value){
-      return false;
-    }
-    i--; 
-    j++;
-  }
-  
-  return true;
+  return (arr[0] && arr[1] && arr[2]);
 }
